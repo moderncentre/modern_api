@@ -123,7 +123,7 @@
         font-size: 2vh;
         font-weight: 700;
         border-radius: 25px;
-        padding: 1vh 1vw ;
+        padding: 1vh 4vw ;
         text-align: center;
         text-decoration: none;
     }
@@ -154,6 +154,9 @@
                     <input id="name" type="text" placeholder="Enter Your Full Name"/>
                 </div>
                 <button onclick="getData()" type="button">Submit</button>
+                <div id="status">
+
+                </div>
             </form>
         </div>
     </div>
@@ -161,7 +164,7 @@
         
         const URL='https://moderncentre.github.io/modern_api/certificate.json'
         async function getData(){
-            const form = document.getElementById('form');
+            const form = document.getElementById('status');
             const sno = document.getElementById("s_no").value;
             const name = document.getElementById("name").value;
            
@@ -177,13 +180,13 @@
                 if (data?.data[sno]?.name===undefined){
                     const err =document.createElement('h4');
                     err.innerText="Invalid Details";
-                    form.appendChild(err)
+                    form.replaceChildren(err)
                     
                 }
                 else if (data?.data[sno]?.name===null){
                     const err =document.createElement('h4');
                     err.innerText="Certificate Not Uploaded";
-                    form.appendChild(err)
+                    form.replaceChildren(err)
                     
                 }
                 else{
@@ -194,13 +197,13 @@
                     download.download=data.data[sno].name;
                     download.target="_self"
                     
-                    form.appendChild(download)
+                    form.replaceChildren(download)
                     }
                     
                     else{
                         const err =document.createElement('h4');
                     err.innerText="Invalid Details";
-                    form.appendChild(err)
+                    form.replaceChildren(err)
 
                     }
                 }
